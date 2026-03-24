@@ -2,6 +2,8 @@
 
 Este repositorio contiene el código fuente de la landing page oficial de **Aurelius Legal**, un bufete de abogados de alto perfil. El objetivo principal de este proyecto es proyectar una imagen **elegante, cara, seria y de absoluta confianza** a través de una experiencia de usuario impecable, un diseño minimalista y una arquitectura moderna.
 
+🌐 **[Ver sitio en vivo](https://aSimpleUserForTermux.github.io/aurelius-legal/)**
+
 ---
 
 ## 🛠 Stack Tecnológico

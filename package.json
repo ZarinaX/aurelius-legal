@@ -2,7 +2,7 @@
   "name": "aurelius-legal",
   "version": "1.0.0",
   "description": "Landing page exclusiva para Aurelius Legal - Bufete de abogados premium",
-  "homepage": "https://aSimpleUserForTermux.github.io/aurelius-legal",
+  "homepage": "https://aSimpleUserForTermux.github.io",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

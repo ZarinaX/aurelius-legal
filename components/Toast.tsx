@@ -8,13 +8,38 @@ export default function Toast() {
   if (!toastMessage) return null;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 animate-slide-in-left">
-      <div className="bg-green-600 text-white px-6 py-4 rounded-lg shadow-lg flex items-center gap-4">
+    <div
+      style={{
+        position: "fixed",
+        bottom: "1.5rem",
+        right: "1.5rem",
+        zIndex: 50,
+        animation: "slideInLeft 0.6s ease-out",
+      }}
+    >
+      <div
+        style={{
+          backgroundColor: "#16a34a",
+          color: "white",
+          padding: "1rem 1.5rem",
+          borderRadius: "0.5rem",
+          boxShadow: "0 10px 30px rgba(0, 0, 0, 0.2)",
+          display: "flex",
+          alignItems: "center",
+          gap: "1rem",
+        }}
+      >
         <span>✓</span>
-        <p className="font-medium">{toastMessage}</p>
+        <p style={{ fontWeight: 500 }}>{toastMessage}</p>
         <button
           onClick={hideToast}
-          className="text-white hover:text-gray-200 transition text-xl"
+          style={{
+            color: "white",
+            fontSize: "1.5rem",
+            border: "none",
+            backgroundColor: "transparent",
+            cursor: "pointer",
+          }}
         >
           ×
         </button>

@@ -2,100 +2,200 @@
 
 import { useUIStore } from "@/stores/uiStore";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Header() {
   const { openContactModal, isMobileMenuOpen, toggleMobileMenu, closeMobileMenu } = useUIStore();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  if (typeof window !== "undefined") {
-    window.addEventListener("scroll", () => {
-      setIsScrolled(window.scrollY > 50);
-    });
-  }
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
+    
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const navLinks = [
     { name: "Inicio", href: "#home" },
     { name: "Servicios", href: "#servicios" },
     { name: "Sobre Nosotros", href: "#nosotros" },
     { name: "Casos", href: "#casos" },
-    { name: "Contacto", href: "#contacto" },
   ];
 
   return (
     <header
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-charcoal-900 shadow-lg backdrop-blur-md"
-          : "bg-transparent"
-      }`}
+      style={{
+        position: "fixed",
+        width: "100%",
+        zIndex: 50,
+        transition: "all 0.3s ease",
+        backgroundColor: isScrolled ? "#050708" : "transparent",
+        boxShadow: isScrolled ? "0 4px 6px rgba(0, 0, 0, 0.1)" : "none",
+      }}
     >
-      <nav className="max-w-7xl mx-auto px-6 lg:px-12 py-6 flex justify-between items-center">
-        {/* Logo */}
-        <Link href="/" className="group">
-          <h1 className="text-3xl font-serif font-bold text-gold-400 group-hover:text-gold-300 transition">
+      <nav
+        style={{
+          maxWidth: "80rem",
+          margin: "0 auto",
+          padding: "1.5rem 3rem",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Link href="/">
+          <h1
+            style={{
+              fontSize: "1.875rem",
+              fontFamily: '"Playfair Display", serif',
+              fontWeight: 700,
+              color: "#d4af37",
+              cursor: "pointer",
+            }}
+          >
             Aurelius
           </h1>
-          <p className="text-xs text-platinum-400 tracking-widest">LEGAL</p>
+          <p style={{ fontSize: "0.625rem", color: "#b0b0b0", letterSpacing: "0.15em" }}>LEGAL</p>
         </Link>
 
-        {/* Desktop Menu */}
-        <ul className="hidden lg:flex items-center gap-10">
-          {navLinks.map((link) => (
-            <li key={link.name}>
-              <a
-                href={link.href}
-                className="text-platinum-300 hover:text-gold-400 transition font-medium text-sm tracking-wide"
-              >
-                {link.name}
-              </a>
-            </li>
-          ))}
-        </ul>
+        {!isMobile && (
+          <ul
+            style={{
+              display: "flex",
+              gap: "2.5rem",
+              alignItems: "center",
+            }}
+          >
+            {navLinks.map((link) => (
+              <li key={link.name}>
+                <a
+                  href={link.href}
+                  style={{
+                    color: "#d3d3d3",
+                    textDecoration: "none",
+                    fontSize: "0.875rem",
+                    fontWeight: 500,
+                    letterSpacing: "0.05em",
+                    transition: "color 0.3s",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "#d4af37")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "#d3d3d3")}
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
 
-        {/* CTA Button */}
-        <div className="hidden lg:flex gap-4">
+        {!isMobile && (
           <button
             onClick={() => openContactModal()}
-            className="bg-gold-500 hover:bg-gold-400 text-charcoal-900 px-6 py-2 font-semibold text-sm tracking-wider transition"
+            style={{
+              backgroundColor: "#b8860b",
+              color: "#050708",
+              padding: "0.5rem 1.5rem",
+              fontWeight: 600,
+              fontSize: "0.875rem",
+              letterSpacing: "0.15em",
+              border: "none",
+              cursor: "pointer",
+              transition: "all 0.3s",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "#d4af37";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "#b8860b";
+            }}
           >
             CONSULTA GRATUITA
           </button>
-        </div>
+        )}
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={toggleMobileMenu}
-          className="lg:hidden flex flex-col gap-1.5 cursor-pointer"
-        >
-          <span
-            className={`w-6 h-0.5 bg-platinum-300 transition-transform ${
-              isMobileMenuOpen ? "rotate-45 translate-y-2" : ""
-            }`}
-          />
-          <span
-            className={`w-6 h-0.5 bg-platinum-300 transition-opacity ${
-              isMobileMenuOpen ? "opacity-0" : ""
-            }`}
-          />
-          <span
-            className={`w-6 h-0.5 bg-platinum-300 transition-transform ${
-              isMobileMenuOpen ? "-rotate-45 -translate-y-2" : ""
-            }`}
-          />
-        </button>
+        {isMobile && (
+          <button
+            onClick={toggleMobileMenu}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "0.375rem",
+              cursor: "pointer",
+              backgroundColor: "transparent",
+              border: "none",
+            }}
+          >
+            <span
+              style={{
+                width: "1.5rem",
+                height: "2px",
+                backgroundColor: "#d3d3d3",
+                transition: "all 0.3s",
+                transform: isMobileMenuOpen ? "rotate(45deg) translateY(8px)" : "none",
+              }}
+            />
+            <span
+              style={{
+                width: "1.5rem",
+                height: "2px",
+                backgroundColor: "#d3d3d3",
+                opacity: isMobileMenuOpen ? 0 : 1,
+                transition: "opacity 0.3s",
+              }}
+            />
+            <span
+              style={{
+                width: "1.5rem",
+                height: "2px",
+                backgroundColor: "#d3d3d3",
+                transition: "all 0.3s",
+                transform: isMobileMenuOpen ? "rotate(-45deg) translateY(-8px)" : "none",
+              }}
+            />
+          </button>
+        )}
       </nav>
 
-      {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 right-0 bg-charcoal-900 border-t border-gold-500 border-opacity-20">
-          <ul className="flex flex-col items-center gap-6 py-8 px-6">
+        <div
+          style={{
+            position: "absolute",
+            top: "100%",
+            left: 0,
+            right: 0,
+            backgroundColor: "#050708",
+            borderTop: "1px solid rgba(212, 175, 55, 0.2)",
+          }}
+        >
+          <ul
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "1.5rem",
+              padding: "2rem 1.5rem",
+            }}
+          >
             {navLinks.map((link) => (
               <li key={link.name}>
                 <a
                   href={link.href}
                   onClick={closeMobileMenu}
-                  className="text-platinum-300 hover:text-gold-400 transition font-medium text-sm tracking-wide"
+                  style={{
+                    color: "#d3d3d3",
+                    textDecoration: "none",
+                    fontSize: "0.875rem",
+                    fontWeight: 500,
+                    letterSpacing: "0.05em",
+                  }}
                 >
                   {link.name}
                 </a>
@@ -106,7 +206,18 @@ export default function Header() {
                 openContactModal();
                 closeMobileMenu();
               }}
-              className="bg-gold-500 hover:bg-gold-400 text-charcoal-900 px-6 py-2 font-semibold text-sm tracking-wider transition mt-4 w-full"
+              style={{
+                backgroundColor: "#b8860b",
+                color: "#050708",
+                padding: "0.5rem 1.5rem",
+                fontWeight: 600,
+                fontSize: "0.875rem",
+                letterSpacing: "0.15em",
+                border: "none",
+                cursor: "pointer",
+                marginTop: "1rem",
+                width: "100%",
+              }}
             >
               CONSULTA GRATUITA
             </button>

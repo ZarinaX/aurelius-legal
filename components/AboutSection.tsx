@@ -1,116 +1,95 @@
+"use client";
+
 export default function AboutSection() {
-  const teamMembers = [
-    {
-      name: "Dra. Victoria Harrington",
-      position: "Socia Fundadora - Litigio Corporativo",
-      experience: "28 años",
-    },
-    {
-      name: "Dr. Marco Delgado",
-      position: "Socio - Derecho Mercantil",
-      experience: "22 años",
-    },
-    {
-      name: "Lic. Elena Ramírez",
-      position: "Asociada Sénior - Derecho Fiscal",
-      experience: "18 años",
-    },
-    {
-      name: "Dr. Antonio Navarro",
-      position: "Asociado - Derecho Laboral",
-      experience: "15 años",
-    },
+  const team = [
+    { name: "Dra. Victoria Harrington", pos: "Socia Fundadora", exp: "28 años" },
+    { name: "Dr. Marco Delgado", pos: "Socio", exp: "22 años" },
+    { name: "Lic. Elena Ramírez", pos: "Asociada Sénior", exp: "18 años" },
+    { name: "Dr. Antonio Navarro", pos: "Asociado", exp: "15 años" },
   ];
 
   return (
-    <section
-      id="nosotros"
-      className="py-20 lg:py-32 bg-white px-6 lg:px-12"
-    >
-      <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-          {/* Left Content */}
+    <section id="nosotros" style={{ padding: "5rem 1.5rem", backgroundColor: "white" }}>
+      <div style={{ maxWidth: "80rem", margin: "0 auto" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", marginBottom: "4rem", alignItems: "center" }}>
           <div>
-            <p className="text-gold-500 text-sm tracking-widest uppercase font-semibold mb-4">
+            <p style={{ color: "#b8860b", fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 600, marginBottom: "1rem" }}>
               Quiénes Somos
             </p>
-            <h2 className="text-4xl lg:text-5xl font-serif font-bold text-charcoal-900 mb-6">
+            <h2 style={{ fontSize: "2.5rem", fontFamily: '"Playfair Display", serif', color: "#1a1a1a", marginBottom: "1.5rem", fontWeight: 700 }}>
               Excelencia y Confianza
             </h2>
-            <p className="text-lg text-charcoal-600 mb-6 leading-relaxed">
-              Aurelius Legal nace de la visión de crear un bufete que combine
-              la tradición legal con la innovación estratégica. Nuestro equipo
-              está compuesto por profesionales de alto nivel con trayectorias
-              probadas en las jurisdicciones más complejas.
+            <p style={{ fontSize: "1.125rem", color: "#4b5563", marginBottom: "1.5rem", lineHeight: 1.6 }}>
+              Aurelius Legal nace de la visión de crear un bufete que combine la tradición legal con la innovación estratégica. Nuestro equipo está compuesto por profesionales de alto nivel.
             </p>
-            <p className="text-lg text-charcoal-600 leading-relaxed">
-              Nos especializamos en casos de alto valor y complejidad, trabajando
-              con corporaciones multinacionales, empresarios y entidades
-              gubernamentales. Cada caso es una oportunidad de demostrar nuestra
-              capacidad y compromiso.
+            <p style={{ fontSize: "1.125rem", color: "#4b5563", lineHeight: 1.6 }}>
+              Nos especializamos en casos de alto valor y complejidad, trabajando con corporaciones multinacionales y entidades gubernamentales.
             </p>
           </div>
 
-          {/* Right Content - Values */}
-          <div className="space-y-6">
-            <div className="bg-gray-50 p-6 border-l-4 border-gold-500">
-              <h3 className="text-xl font-serif font-bold text-charcoal-900 mb-3">
-                Integridad
-              </h3>
-              <p className="text-charcoal-600">
-                La ética profesional es el pilar de nuestras acciones. Cada consejo
-                y estrategia se fundamenta en principios legales sólidos.
-              </p>
-            </div>
-
-            <div className="bg-gray-50 p-6 border-l-4 border-gold-500">
-              <h3 className="text-xl font-serif font-bold text-charcoal-900 mb-3">
-                Innovación
-              </h3>
-              <p className="text-charcoal-600">
-                Nos mantenemos a la vanguardia de las tendencias legales y tecnologías
-                para ofrecer soluciones modernas y efectivas.
-              </p>
-            </div>
-
-            <div className="bg-gray-50 p-6 border-l-4 border-gold-500">
-              <h3 className="text-xl font-serif font-bold text-charcoal-900 mb-3">
-                Resultados
-              </h3>
-              <p className="text-charcoal-600">
-                Nuestro historial habla por sí solo: 98% de tasa de éxito y clientes
-                satisfechos que regresan y nos recomiendan.
-              </p>
-            </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+            {[
+              { title: "Integridad", desc: "La ética profesional es el pilar de nuestras acciones." },
+              { title: "Innovación", desc: "Nos mantenemos a la vanguardia de las tendencias legales." },
+              { title: "Resultados", desc: "Nuestro historial habla por sí solo: 98% de tasa de éxito." },
+            ].map((v, i) => (
+              <div key={i} style={{ backgroundColor: "#f9fafb", padding: "1.5rem", borderLeft: "4px solid #b8860b" }}>
+                <h3 style={{ fontSize: "1.25rem", fontFamily: '"Playfair Display", serif', color: "#1a1a1a", marginBottom: "0.75rem", fontWeight: 700 }}>
+                  {v.title}
+                </h3>
+                <p style={{ color: "#4b5563" }}>{v.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Team Section */}
-        <div className="mt-20 pt-20 border-t border-gray-200">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl lg:text-4xl font-serif font-bold text-charcoal-900 mb-4">
+        <div style={{ marginTop: "5rem", paddingTop: "5rem", borderTop: "1px solid #e5e7eb" }}>
+          <div style={{ textAlign: "center", marginBottom: "3rem" }}>
+            <h3 style={{ fontSize: "2rem", fontFamily: '"Playfair Display", serif', color: "#1a1a1a", fontWeight: 700 }}>
               Nuestro Equipo de Expertos
             </h3>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member, index) => (
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "2rem" }}>
+            {team.map((m, i) => (
               <div
-                key={index}
-                className="bg-gray-50 p-6 text-center hover:shadow-lg transition-shadow"
+                key={i}
+                style={{
+                  backgroundColor: "#f9fafb",
+                  padding: "1.5rem",
+                  textAlign: "center",
+                  transition: "all 0.3s",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = "0 10px 30px rgba(0, 0, 0, 0.1)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = "none";
+                }}
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-gold-400 to-gold-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-2xl text-white font-serif font-bold">
-                    {member.name.charAt(0)}
-                  </span>
+                <div
+                  style={{
+                    width: "64px",
+                    height: "64px",
+                    background: "linear-gradient(135deg, #d4af37 0%, #b8860b 100%)",
+                    borderRadius: "50%",
+                    margin: "0 auto 1rem",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "2rem",
+                    color: "white",
+                    fontFamily: '"Playfair Display", serif',
+                    fontWeight: 700,
+                  }}
+                >
+                  {m.name.charAt(0)}
                 </div>
-                <h4 className="text-lg font-serif font-bold text-charcoal-900 mb-2">
-                  {member.name}
+                <h4 style={{ fontSize: "1.125rem", fontFamily: '"Playfair Display", serif', color: "#1a1a1a", marginBottom: "0.5rem", fontWeight: 700 }}>
+                  {m.name}
                 </h4>
-                <p className="text-sm text-gold-500 font-semibold mb-3">
-                  {member.position}
-                </p>
-                <p className="text-sm text-charcoal-600">{member.experience}</p>
+                <p style={{ fontSize: "0.875rem", color: "#b8860b", fontWeight: 600, marginBottom: "0.75rem" }}>{m.pos}</p>
+                <p style={{ fontSize: "0.875rem", color: "#4b5563" }}>{m.exp}</p>
               </div>
             ))}
           </div>

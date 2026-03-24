@@ -1,0 +1,76 @@
+/* Color Palette */
+:root {
+  --color-midnight: #0f1419;
+  --color-charcoal: #1a1a1a;
+  --color-white: #ffffff;
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-600: #4b5563;
+  --color-gold: #b8860b;
+  --color-gold-light: #d4af37;
+  --color-platinum: #c0c0c0;
+}
+
+/* Containers */
+.container {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Buttons */
+.btnPrimary {
+  background-color: var(--color-gold);
+  color: var(--color-charcoal);
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.15em;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btnPrimary:hover {
+  background-color: var(--color-gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
+}
+
+.btnSecondary {
+  border: 2px solid var(--color-gold-light);
+  color: var(--color-gold-light);
+  background-color: transparent;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btnSecondary:hover {
+  background-color: var(--color-gold-light);
+  color: var(--color-charcoal);
+}
+
+/* Text */
+.textGold {
+  color: var(--color-gold);
+}
+
+.textLight {
+  color: var(--color-platinum);
+}
+
+.textSmall {
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+}
+
+.textUppercase {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}

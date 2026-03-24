@@ -1,76 +1,64 @@
+"use client";
+
 export default function ServicesSection() {
   const services = [
-    {
-      title: "Litigio Corporativo",
-      description:
-        "Representación integral en disputas comerciales de alto valor, con un enfoque estratégico y resultados comprobados.",
-      icon: "⚖️",
-    },
-    {
-      title: "Derecho Mercantil",
-      description:
-        "Asesoramiento en fusiones, adquisiciones, constitución de empresas y cumplimiento normativo corporativo.",
-      icon: "📊",
-    },
-    {
-      title: "Derecho Fiscal",
-      description:
-        "Planificación tributaria avanzada, auditorías fiscales y defensa ante autoridades tributarias.",
-      icon: "💰",
-    },
-    {
-      title: "Derecho Laboral",
-      description:
-        "Asesoramiento en conflictos laborales, cumplimiento normativo y protección de derechos empresariales.",
-      icon: "👥",
-    },
-    {
-      title: "Protección de Derechos",
-      description:
-        "Defensa de propiedad intelectual, marcas y patentes con un alcance nacional e internacional.",
-      icon: "🔒",
-    },
-    {
-      title: "Asesoramiento Estratégico",
-      description:
-        "Consultoría legal integrada para optimizar operaciones y minimizar riesgos legales corporativos.",
-      icon: "🎯",
-    },
+    { title: "Litigio Corporativo", description: "Representación integral en disputas comerciales de alto valor.", icon: "⚖️" },
+    { title: "Derecho Mercantil", description: "Asesoramiento en fusiones, adquisiciones y cumplimiento normativo.", icon: "📊" },
+    { title: "Derecho Fiscal", description: "Planificación tributaria avanzada y defensa fiscal.", icon: "💰" },
+    { title: "Derecho Laboral", description: "Asesoramiento en conflictos laborales y normativa.", icon: "👥" },
+    { title: "Propiedad Intelectual", description: "Defensa de marcas, patentes y derechos de autor.", icon: "🔒" },
+    { title: "Asesoramiento Estratégico", description: "Consultoría legal integrada para tu empresa.", icon: "🎯" },
   ];
 
   return (
     <section
       id="servicios"
-      className="py-20 lg:py-32 bg-gray-50 px-6 lg:px-12"
+      style={{
+        padding: "5rem 1.5rem",
+        backgroundColor: "#f9fafb",
+      }}
     >
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <p className="text-gold-500 text-sm tracking-widest uppercase font-semibold mb-4">
+      <div style={{ maxWidth: "80rem", margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: "4rem" }}>
+          <p style={{ color: "#b8860b", fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 600, marginBottom: "1rem" }}>
             Nuestras Especialidades
           </p>
-          <h2 className="text-4xl lg:text-5xl font-serif font-bold text-charcoal-900 mb-6">
+          <h2 style={{ fontSize: "2.5rem", fontFamily: '"Playfair Display", serif', color: "#1a1a1a", marginBottom: "1.5rem", fontWeight: 700 }}>
             Servicios Legales Premium
           </h2>
-          <p className="text-lg text-charcoal-500 max-w-2xl mx-auto">
-            Soluciones legales personalizadas para cada necesidad corporativa
-          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gap: "2rem",
+          }}
+        >
+          {services.map((service, i) => (
             <div
-              key={index}
-              className="bg-white p-8 border-l-4 border-gold-500 hover:shadow-xl transition-shadow duration-300 group"
+              key={i}
+              style={{
+                backgroundColor: "white",
+                padding: "2rem",
+                borderLeft: "4px solid #b8860b",
+                transition: "all 0.3s",
+                cursor: "pointer",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = "0 10px 30px rgba(0, 0, 0, 0.1)";
+                e.currentTarget.style.transform = "translateY(-2px)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = "none";
+                e.currentTarget.style.transform = "translateY(0)";
+              }}
             >
-              <p className="text-4xl mb-4 group-hover:scale-110 transition-transform">
-                {service.icon}
-              </p>
-              <h3 className="text-xl font-serif font-bold text-charcoal-900 mb-4">
+              <p style={{ fontSize: "2.25rem", marginBottom: "1rem" }}>{service.icon}</p>
+              <h3 style={{ fontSize: "1.25rem", fontFamily: '"Playfair Display", serif', color: "#1a1a1a", marginBottom: "1rem", fontWeight: 700 }}>
                 {service.title}
               </h3>
-              <p className="text-charcoal-600 leading-relaxed">
-                {service.description}
-              </p>
+              <p style={{ color: "#4b5563", lineHeight: 1.6 }}>{service.description}</p>
             </div>
           ))}
         </div>

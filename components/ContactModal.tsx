@@ -5,31 +5,21 @@ import { useState } from "react";
 
 export default function ContactModal() {
   const { isContactModalOpen, closeContactModal, showToast } = useUIStore();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    caseType: "",
-    message: "",
-  });
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", phone: "", type: "", msg: "" });
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setForm((p) => ({ ...p, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
-    setIsLoading(true);
-
-    // Simular envío de formulario
+    setLoading(true);
     setTimeout(() => {
-      setIsLoading(false);
+      setLoading(false);
       showToast("¡Consulta enviada! Nos contactaremos pronto.");
-      setFormData({ name: "", email: "", phone: "", caseType: "", message: "" });
+      setForm({ name: "", email: "", phone: "", type: "", msg: "" });
       closeContactModal();
     }, 1500);
   };
@@ -37,114 +27,176 @@ export default function ContactModal() {
   if (!isContactModalOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg max-w-xl w-full shadow-2xl animate-fade-in">
-        {/* Header */}
-        <div className="bg-charcoal-900 px-8 py-6 flex justify-between items-center">
-          <h2 className="text-2xl font-serif font-bold text-gold-400">
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        zIndex: 50,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "1rem",
+      }}
+    >
+      <div
+        style={{
+          backgroundColor: "white",
+          borderRadius: "0.5rem",
+          maxWidth: "600px",
+          width: "100%",
+          boxShadow: "0 25px 50px rgba(0, 0, 0, 0.2)",
+        }}
+      >
+        <div style={{ backgroundColor: "#050708", padding: "1.5rem 2rem", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <h2 style={{ fontSize: "1.5rem", fontFamily: '"Playfair Display", serif', fontWeight: 700, color: "#d4af37" }}>
             Consulta Gratuita
           </h2>
           <button
             onClick={closeContactModal}
-            className="text-platinum-300 hover:text-white transition text-2xl"
+            style={{ color: "#d3d3d3", fontSize: "2rem", border: "none", backgroundColor: "transparent", cursor: "pointer" }}
           >
             ×
           </button>
         </div>
 
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="px-8 py-8 space-y-6">
+        <form onSubmit={handleSubmit} style={{ padding: "2rem", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
           <div>
-            <label className="block text-sm font-semibold text-charcoal-900 mb-2">
+            <label style={{ display: "block", fontSize: "0.875rem", fontWeight: 600, color: "#1a1a1a", marginBottom: "0.5rem" }}>
               Nombre Completo
             </label>
             <input
               type="text"
               name="name"
-              value={formData.name}
+              value={form.name}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 border border-gray-300 focus:border-gold-500 focus:outline-none transition"
+              style={{
+                width: "100%",
+                padding: "0.75rem",
+                border: "1px solid #d1d5db",
+                outline: "none",
+                transition: "border 0.3s",
+              }}
+              onFocus={(e) => (e.target.style.borderColor = "#b8860b")}
+              onBlur={(e) => (e.target.style.borderColor = "#d1d5db")}
               placeholder="Tu nombre"
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
             <div>
-              <label className="block text-sm font-semibold text-charcoal-900 mb-2">
+              <label style={{ display: "block", fontSize: "0.875rem", fontWeight: 600, color: "#1a1a1a", marginBottom: "0.5rem" }}>
                 Email
               </label>
               <input
                 type="email"
                 name="email"
-                value={formData.email}
+                value={form.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 focus:border-gold-500 focus:outline-none transition"
+                style={{
+                  width: "100%",
+                  padding: "0.75rem",
+                  border: "1px solid #d1d5db",
+                  outline: "none",
+                  transition: "border 0.3s",
+                }}
                 placeholder="tu@email.com"
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-charcoal-900 mb-2">
+              <label style={{ display: "block", fontSize: "0.875rem", fontWeight: 600, color: "#1a1a1a", marginBottom: "0.5rem" }}>
                 Teléfono
               </label>
               <input
                 type="tel"
                 name="phone"
-                value={formData.phone}
+                value={form.phone}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 focus:border-gold-500 focus:outline-none transition"
+                style={{
+                  width: "100%",
+                  padding: "0.75rem",
+                  border: "1px solid #d1d5db",
+                  outline: "none",
+                  transition: "border 0.3s",
+                }}
                 placeholder="+1 (555) 123-4567"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-charcoal-900 mb-2">
+            <label style={{ display: "block", fontSize: "0.875rem", fontWeight: 600, color: "#1a1a1a", marginBottom: "0.5rem" }}>
               Tipo de Caso
             </label>
             <select
-              name="caseType"
-              value={formData.caseType}
+              name="type"
+              value={form.type}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 border border-gray-300 focus:border-gold-500 focus:outline-none transition bg-white"
+              style={{
+                width: "100%",
+                padding: "0.75rem",
+                border: "1px solid #d1d5db",
+                outline: "none",
+                backgroundColor: "white",
+              }}
             >
               <option value="">Selecciona una categoría</option>
               <option value="litigio">Litigio Corporativo</option>
               <option value="mercantil">Derecho Mercantil</option>
               <option value="fiscal">Derecho Fiscal</option>
               <option value="laboral">Derecho Laboral</option>
-              <option value="propiedad">Propiedad Intelectual</option>
+              <option value="ip">Propiedad Intelectual</option>
               <option value="otro">Otro</option>
             </select>
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-charcoal-900 mb-2">
+            <label style={{ display: "block", fontSize: "0.875rem", fontWeight: 600, color: "#1a1a1a", marginBottom: "0.5rem" }}>
               Descripción del Caso
             </label>
             <textarea
-              name="message"
-              value={formData.message}
+              name="msg"
+              value={form.msg}
               onChange={handleChange}
               required
               rows={4}
-              className="w-full px-4 py-3 border border-gray-300 focus:border-gold-500 focus:outline-none transition resize-none"
+              style={{
+                width: "100%",
+                padding: "0.75rem",
+                border: "1px solid #d1d5db",
+                outline: "none",
+                resize: "none",
+              }}
               placeholder="Cuéntanos sobre tu situación legal..."
             />
           </div>
 
           <button
             type="submit"
-            disabled={isLoading}
-            className="w-full bg-gold-500 hover:bg-gold-400 disabled:bg-gray-400 text-charcoal-900 py-3 font-bold text-lg tracking-wider transition"
+            disabled={loading}
+            style={{
+              width: "100%",
+              backgroundColor: loading ? "#d1d5db" : "#b8860b",
+              color: "#050708",
+              padding: "0.75rem",
+              fontWeight: 700,
+              fontSize: "1.125rem",
+              letterSpacing: "0.15em",
+              border: "none",
+              cursor: loading ? "not-allowed" : "pointer",
+              transition: "all 0.3s",
+            }}
+            onMouseEnter={(e) => !loading && (e.currentTarget.style.backgroundColor = "#d4af37")}
+            onMouseLeave={(e) => !loading && (e.currentTarget.style.backgroundColor = "#b8860b")}
           >
-            {isLoading ? "Enviando..." : "ENVIAR CONSULTA"}
+            {loading ? "Enviando..." : "ENVIAR CONSULTA"}
           </button>
 
-          <p className="text-xs text-charcoal-500 text-center">
+          <p style={{ fontSize: "0.75rem", color: "#4b5563", textAlign: "center" }}>
             Todos tus datos serán tratados de forma confidencial y segura.
           </p>
         </form>

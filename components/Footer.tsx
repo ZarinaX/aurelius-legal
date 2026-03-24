@@ -1,103 +1,79 @@
 "use client";
 
 import { useUIStore } from "@/stores/uiStore";
-import Link from "next/link";
 
 export default function Footer() {
   const { openContactModal } = useUIStore();
 
   return (
-    <footer className="bg-charcoal-900 text-platinum-300 py-12 px-6 lg:px-12">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-4 gap-8 mb-12">
-          {/* Brand */}
+    <footer style={{ backgroundColor: "#050708", color: "#d3d3d3", padding: "3rem 1.5rem" }}>
+      <div style={{ maxWidth: "80rem", margin: "0 auto" }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+            gap: "2rem",
+            marginBottom: "3rem",
+          }}
+        >
           <div>
-            <h3 className="text-2xl font-serif font-bold text-gold-400 mb-4">
+            <h3 style={{ fontSize: "1.5rem", fontFamily: '"Playfair Display", serif', fontWeight: 700, color: "#d4af37", marginBottom: "1rem" }}>
               Aurelius
             </h3>
-            <p className="text-sm opacity-75">
-              Soluciones legales de excelencia para corporaciones y profesionales.
+            <p style={{ fontSize: "0.875rem", opacity: 0.75 }}>
+              Soluciones legales de excelencia para corporaciones.
             </p>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h4 className="font-bold text-white mb-4">Navegación</h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a href="#servicios" className="hover:text-gold-400 transition">
-                  Servicios
-                </a>
-              </li>
-              <li>
-                <a href="#nosotros" className="hover:text-gold-400 transition">
-                  Sobre Nosotros
-                </a>
-              </li>
-              <li>
-                <a href="#casos" className="hover:text-gold-400 transition">
-                  Casos de Éxito
-                </a>
-              </li>
-              <li>
-                <a href="#contacto" className="hover:text-gold-400 transition">
-                  Contacto
-                </a>
-              </li>
+            <h4 style={{ fontWeight: 700, color: "white", marginBottom: "1rem" }}>Navegación</h4>
+            <ul style={{ listStyle: "none" }}>
+              {["Servicios", "Sobre Nosotros", "Casos", "Contacto"].map((l, i) => (
+                <li key={i} style={{ marginBottom: "0.5rem", fontSize: "0.875rem" }}>
+                  <a href="#" style={{ color: "#d3d3d3", textDecoration: "none" }}>
+                    {l}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Services */}
           <div>
-            <h4 className="font-bold text-white mb-4">Servicios</h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a href="#servicios" className="hover:text-gold-400 transition">
-                  Litigio Corporativo
-                </a>
-              </li>
-              <li>
-                <a href="#servicios" className="hover:text-gold-400 transition">
-                  Derecho Mercantil
-                </a>
-              </li>
-              <li>
-                <a href="#servicios" className="hover:text-gold-400 transition">
-                  Asesoramiento Fiscal
-                </a>
-              </li>
-              <li>
-                <a href="#servicios" className="hover:text-gold-400 transition">
-                  Derecho Laboral
-                </a>
-              </li>
+            <h4 style={{ fontWeight: 700, color: "white", marginBottom: "1rem" }}>Servicios</h4>
+            <ul style={{ listStyle: "none" }}>
+              {["Litigio Corporativo", "Derecho Mercantil", "Derecho Fiscal", "Derecho Laboral"].map((s, i) => (
+                <li key={i} style={{ marginBottom: "0.5rem", fontSize: "0.875rem" }}>
+                  <a href="#" style={{ color: "#d3d3d3", textDecoration: "none" }}>
+                    {s}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
-            <h4 className="font-bold text-white mb-4">Contacto</h4>
-            <ul className="space-y-2 text-sm">
-              <li className="flex items-center gap-2">
-                <span>📞</span>
-                <a href="tel:+1234567890" className="hover:text-gold-400 transition">
-                  +1 (555) 123-4567
-                </a>
+            <h4 style={{ fontWeight: 700, color: "white", marginBottom: "1rem" }}>Contacto</h4>
+            <ul style={{ listStyle: "none" }}>
+              <li style={{ marginBottom: "0.5rem", fontSize: "0.875rem" }}>
+                📞 <a href="tel:+1234567890" style={{ color: "#d3d3d3", textDecoration: "none" }}>+1 (555) 123-4567</a>
               </li>
-              <li className="flex items-center gap-2">
-                <span>📧</span>
-                <a href="mailto:contacto@aureliuslegal.com" className="hover:text-gold-400 transition">
-                  contacto@aurelius.com
-                </a>
+              <li style={{ marginBottom: "0.5rem", fontSize: "0.875rem" }}>
+                📧 <a href="mailto:contacto@aurelius.com" style={{ color: "#d3d3d3", textDecoration: "none" }}>contacto@aurelius.com</a>
               </li>
-              <li className="flex items-center gap-2">
-                <span>🌐</span>
-                <span>www.aureliuslegal.com</span>
+              <li style={{ marginBottom: "1rem", fontSize: "0.875rem" }}>
+                🌐 www.aureliuslegal.com
               </li>
               <li>
                 <button
                   onClick={() => openContactModal()}
-                  className="text-gold-400 hover:text-gold-300 transition font-semibold text-sm mt-2"
+                  style={{
+                    color: "#d4af37",
+                    fontWeight: 600,
+                    fontSize: "0.875rem",
+                    border: "none",
+                    backgroundColor: "transparent",
+                    cursor: "pointer",
+                  }}
                 >
                   Solicita Consulta →
                 </button>
@@ -106,21 +82,24 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom */}
-        <div className="border-t border-gold-500 border-opacity-20 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm opacity-75">
-            © 2024 Aurelius Legal. All rights reserved.
-          </p>
-          <div className="flex gap-6 mt-4 md:mt-0 text-sm">
-            <a href="#" className="hover:text-gold-400 transition">
-              Privacidad
-            </a>
-            <a href="#" className="hover:text-gold-400 transition">
-              Términos
-            </a>
-            <a href="#" className="hover:text-gold-400 transition">
-              Cookies
-            </a>
+        <div
+          style={{
+            borderTop: "1px solid rgba(212, 175, 55, 0.2)",
+            paddingTop: "2rem",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            alignItems: "center",
+            textAlign: "center",
+            fontSize: "0.875rem",
+            opacity: 0.75,
+          }}
+        >
+          <p>© 2024 Aurelius Legal. All rights reserved.</p>
+          <div style={{ display: "flex", gap: "1.5rem", marginTop: "1rem" }}>
+            <a href="#" style={{ color: "#d3d3d3", textDecoration: "none" }}>Privacidad</a>
+            <a href="#" style={{ color: "#d3d3d3", textDecoration: "none" }}>Términos</a>
+            <a href="#" style={{ color: "#d3d3d3", textDecoration: "none" }}>Cookies</a>
           </div>
         </div>
       </div>
